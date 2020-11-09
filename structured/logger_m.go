@@ -14,9 +14,3 @@ type LoggerM interface {
 	// Error is for events where the application could not do the right thing
 	Error(msg string, metas ...Metadata)
 }
-
-// LoggerMWM is a Logger that can derive a new Logger with implicit metadata
-type LoggerMWM interface {
-	WithMeta(metas ...Metadata) LoggerMWM
-	LoggerM
-}
