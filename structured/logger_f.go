@@ -1,7 +1,7 @@
 package logging
 
-// Logger accepts messages at standard log levels using Printf-style interpolation
-type Logger interface {
+// LoggerF accepts messages at standard log levels using Printf-style interpolation
+type LoggerF interface {
 	// Debug is for low-level information or non-significant application events
 	Debugf(format string, args ...interface{})
 
@@ -13,4 +13,12 @@ type Logger interface {
 
 	// Error is for events where the application could not do the right thing
 	Errorf(format string, args ...interface{})
+}
+
+// LoggerFWM is a LoggerF that can derive a new Logger with implicit metadata
+type LoggerFWM interface {
+	// WithMeta creates a new Logger with additional implicit metadata
+	WithMeta(metas ...Metadata) LoggerFWM
+
+	LoggerF
 }

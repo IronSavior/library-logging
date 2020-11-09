@@ -4,15 +4,8 @@ import (
 	"context"
 )
 
-// Contextual returns a Logger based on the given Context. Implementations MUST return a non-nil Logger.
+// Contextual handles operations on context.Context
 type Contextual interface {
+	// FromContext returns a Logger based on the given Context
 	FromContext(ctx context.Context) Logger
-}
-
-// FromContextFunc allows a function to implement Contextual
-type FromContextFunc func(context.Context) Logger
-
-// FromContext invokes a FromContextFunc
-func (f FromContextFunc) FromContext(ctx context.Context) Logger {
-	return f(ctx)
 }
